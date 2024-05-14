@@ -1,58 +1,48 @@
-import React from 'react'
+import React from 'react';
+import Child from './Child.jsx';
 
-class App extends React.Component{
-
-  constructor(props) {
-    super(props)
+class App1 extends React.Component{
+  constructor(props)
+  {
+    super(props);
     this.state = {
-      img1:props.img
-    }
-    console.log(' constructor call');
-    this.updateData = this.updateData.bind(this);
-  
+      'name1': 'LTH',
+      'show': true,
+      'name1': props.name,
+      'address1': props.address,
+        'mobile1': props.mobile
+      
+      ,
+     }
+      this.hideData=this.hideData.bind(this);
+      this.showData=this.showData.bind(this);
   }
-  
-  static getDerivedStateFromProps(props, state) {
-    console.log('getDerivedStateFromProps call');
+  static getDerivedStatesFromProps(props,state)
+  {
     return null;
   }
-
   componentDidMount() {
-    console.log('componentDidMount call');
-  }
+   
 
-  shouldComponentUpdate(nextProps, nextState)
-  {
-    console.log(' shouldComponentUpdate call');
-    return true;
-  }
-
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log(' getSnapshotBeforeUpdate call');
-    return true;
-
-  }
-
-  componentDidUpdate(prevProps, prevState,snapshot) {
-    console.log(' componentDidUpdate call');
-    return true;
-
-  }
-
-  updateData() {
-    this.setState({img1:'https://i0.wp.com/picjumbo.com/wp-content/uploads/magical-spring-forest-scenery-during-morning-breeze-free-photo.jpg?w=600&quality=80'})
-  }
-  render()
-  {
-
-    console.log('render call');
-    return (
-      <>
-        <img src={this.state.img1} alt="" />
-        <button onClick={this.updateData}>Click me</button>
-      </>
+}
+hideData(){
+  this.setState({show:false});
+  
+}
+showData(){
+  this.setState({show:true});
+}
+  render(){
+    return(
+     <div style={{marginLeft:'550px', textAlign:'center'}}>
+     {
+      (this.state.show)? <><Child/><h1> Name : {this.state.name1}<br></br>  <br></br>  Address :  {this.state.address1} <br></br> <br></br>  Mobile : {this.state.mobile1}</h1><br></br></> : ""
+     }
+     <button style={{margin:'20px'}} onClick={this.hideData} className=' text-white ml-2'>Hide</button>
+     <button   style={{margin:'20px'}}   onClick={this.showData} className=' ml-2 text-white'>Show</button>
+     </div>
     )
   }
 }
 
-export default App
+export default App1;
